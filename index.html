@@ -3,89 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Username Suggestion</title>
+    <title>Sea & Bird Facts</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
+            background-color: #0099cc; /* Ocean blue */
+            color: #fff;
+            text-align: center;
+            padding: 20px;
         }
         h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+            font-size: 2rem;
+            margin-bottom: 20px;
         }
         button {
-            background-color: #007bff;
+            background-color: #005580; /* Darker blue */
             color: #fff;
             border: none;
             padding: 10px 20px;
-            border-radius: 3px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            margin: 10px;
         }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #suggestedUsername {
+        #factDisplay {
+            font-size: 1.2rem;
             margin-top: 20px;
-            font-weight: bold;
-            animation: scramble 1s infinite alternate;
-        }
-        @keyframes scramble {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(5px);
-            }
         }
     </style>
 </head>
 <body>
-    <h1>Username Suggestion</h1>
-    <form id="usernameForm">
-        <label for="nameInput">Enter your name:</label>
-        <input type="text" id="nameInput" required>
-        <button type="button" onclick="suggestUsername()">Get Suggested Username</button>
-    </form>
-    <p id="suggestedUsername"></p>
+    <h1>Explore Ocean & Bird Facts</h1>
+    <button onclick="getSeaCreatureFact()">Random Sea Creature Fact</button>
+    <button onclick="getBirdFact()">Random Bird Fact</button>
+    <p id="factDisplay"></p>
 
     <script>
-        function suggestUsername() {
-            const name = document.getElementById("nameInput").value;
-            const randomSuffix = Math.floor(Math.random() * 1000);
-            const suggestedUsername = scrambleName(name.toLowerCase()) + randomSuffix;
-            document.getElementById("suggestedUsername").textContent = `Suggested username: ${suggestedUsername}`;
+        const seaCreatureFacts = [
+            "The oceans cover over 70% of Earth's surface.",
+            "The oceans are nearly as old as the Earth itself.",
+            // Add more ocean facts from the provided sources
+            // ...
+        ];
+
+        const birdFacts = [
+            "There are over 9,500 species of birds in the world.",
+            "Approximately 2/3 of all bird species are found in tropical rainforests.",
+            // Add more bird facts from the provided sources
+            // ...
+        ];
+
+        function getRandomFact(factArray) {
+            const randomIndex = Math.floor(Math.random() * factArray.length);
+            return factArray[randomIndex];
         }
 
-        function scrambleName(name) {
-            // Scramble the letters in the name
-            const letters = name.split("");
-            for (let i = letters.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [letters[i], letters[j]] = [letters[j], letters[i]];
-            }
-            return letters.join("");
+        function getSeaCreatureFact() {
+            const randomSeaFact = getRandomFact(seaCreatureFacts);
+            document.getElementById("factDisplay").textContent = randomSeaFact;
+        }
+
+        function getBirdFact() {
+            const randomBirdFact = getRandomFact(birdFacts);
+            document.getElementById("factDisplay").textContent = randomBirdFact;
         }
     </script>
 </body>
