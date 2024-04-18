@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Suggestion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #suggestedUsername {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Username Suggestion</h1>
+    <form id="usernameForm">
+        <label for="nameInput">Enter your name:</label>
+        <input type="text" id="nameInput" required>
+        <button type="button" onclick="suggestUsername()">Get Suggested Username</button>
+    </form>
+    <p id="suggestedUsername"></p>
+
+    <script>
+        function suggestUsername() {
+            const name = document.getElementById("nameInput").value;
+            const randomSuffix = Math.floor(Math.random() * 1000);
+            const suggestedUsername = name.toLowerCase() + randomSuffix;
+            document.getElementById("suggestedUsername").textContent = `Suggested username: ${suggestedUsername}`;
+        }
+    </script>
+</body>
+</html>
