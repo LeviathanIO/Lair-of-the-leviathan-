@@ -41,6 +41,7 @@
             padding: 10px 20px;
             border-radius: 3px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         button:hover {
             background-color: #0056b3;
@@ -48,6 +49,15 @@
         #suggestedUsername {
             margin-top: 20px;
             font-weight: bold;
+            animation: scramble 1s infinite alternate;
+        }
+        @keyframes scramble {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(5px);
+            }
         }
     </style>
 </head>
@@ -64,8 +74,18 @@
         function suggestUsername() {
             const name = document.getElementById("nameInput").value;
             const randomSuffix = Math.floor(Math.random() * 1000);
-            const suggestedUsername = name.toLowerCase() + randomSuffix;
+            const suggestedUsername = scrambleName(name.toLowerCase()) + randomSuffix;
             document.getElementById("suggestedUsername").textContent = `Suggested username: ${suggestedUsername}`;
+        }
+
+        function scrambleName(name) {
+            // Scramble the letters in the name
+            const letters = name.split("");
+            for (let i = letters.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [letters[i], letters[j]] = [letters[j], letters[i]];
+            }
+            return letters.join("");
         }
     </script>
 </body>
