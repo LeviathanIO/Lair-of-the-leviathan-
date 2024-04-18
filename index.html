@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Suggestion</title>
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        /* Other CSS styles for form elements, buttons, etc. */
+    </style>
+</head>
+<body>
+    <h1>Username Suggestion</h1>
+    <form id="usernameForm">
+        <label for="nameInput">Enter your name:</label>
+        <input type="text" id="nameInput" required>
+        <button type="button" onclick="suggestUsername()">Get Suggested Username</button>
+    </form>
+    <p id="suggestedUsername"></p>
+
+    <script>
+        function suggestUsername() {
+            const name = document.getElementById("nameInput").value;
+            const randomSuffix = Math.floor(Math.random() * 1000);
+            const suggestedUsername = name.toLowerCase() + randomSuffix;
+            document.getElementById("suggestedUsername").textContent = `Suggested username: ${suggestedUsername}`;
+        }
+    </script>
+</body>
+</html>
